@@ -61,6 +61,8 @@ def upload():
     if not paste_text:
         flask.abort(400, description="No text provided")
 
+    """
+    removed as the chances of a collision happening are miniscule. Should the paste ids be based on the timestamp?
     # check for possible collisions
     while True:
         paste_id = generate_paste_id()
@@ -68,7 +70,10 @@ def upload():
 
         if res is None:
             break
+    """
 
+
+    paste_id = generate_paste_id()
     get_db().pastes.insert_one({"id": paste_id, "text": paste_text})
 
     return flask.jsonify({"paste_id": paste_id})
