@@ -1,0 +1,6 @@
+services:
+  web:
+    container_name: binpaste
+    build: './app'
+    ports:
+      - '6000:5000'

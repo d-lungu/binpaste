@@ -1,0 +1,45 @@
+.svg-icon {
+    path {
+        fill: currentColor;
+    }
+}
+
+h1 {
+    text-align: center;
+    margin: 10px 0;
+}
+
+#editor-container {
+    position: fixed;
+    top: 50px;
+    bottom: 35px;
+    left: 5px;
+    right: 5px;
+    overflow: hidden;
+}
+
+#editor {
+    width: 100%;
+    height: 100%;
+    max-height: none;
+
+    margin: 0;
+    padding: 5px;
+
+    resize: none;
+}
+
+#navbar_urllink, #navbar_save {
+    display: none;
+    user-select: none;
+    cursor: pointer;
+}
+
+#navbar_urllink:hover {
+    text-decoration: underline;
+}
+
+#navbar_save.navbar_item_disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
