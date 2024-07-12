@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 
 {% block head %}
+<meta content="BinPaste" property="og:title" />
+<meta content="{{ EMBED_DESCRIPTION }}" property="og:description" />
 <script>
     const paste_value = "{{PASTE_DATA}}";
 </script>

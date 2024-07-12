@@ -51,7 +51,11 @@ def index() -> str:
 def paste(paste_id: str) -> str:
     paste_data = get_db().pastes.find_one({"id": paste_id})
 
-    return flask.render_template("paste.html", PASTE_DATA=paste_data["text"])
+    paste_troncated = paste_data["text"]
+    if len(paste_troncated) > 256:
+        paste_troncated = paste_troncated[:256]
+
+    return flask.render_template("paste.html", PASTE_DATA=paste_data["text"], EMBED_DESCRIPTION=paste_troncated)
 
 
 @app.route("/api/upload", methods=["POST"])
