@@ -1,0 +1,3 @@
+- mobile responsiveness
+- unit tests
+- setup flask env
