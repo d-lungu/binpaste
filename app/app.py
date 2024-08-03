@@ -76,7 +76,6 @@ def upload():
             break
     """
 
-
     paste_id = generate_paste_id()
     get_db().pastes.insert_one({"id": paste_id, "text": paste_text})
 
