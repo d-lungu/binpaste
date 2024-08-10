@@ -6,7 +6,7 @@ import redis
 import flask_caching
 import flask_limiter
 
-REDIS_HOST = "localhost"
+REDIS_HOST = "redis"
 REDIS_PORT = 6379
 
 app = flask.Flask(__name__)
@@ -24,7 +24,7 @@ limiter = flask_limiter.Limiter(
     app=app,
     default_limits=["10 per second", "100 per minute", "250 per hour", "500 per day"],
     # Redis
-    storage_uri="redis://localhost:6379",
+    storage_uri=f"redis://{REDIS_HOST}:{REDIS_PORT}",
     strategy="fixed-window",  # or "moving-window"
 )
 
