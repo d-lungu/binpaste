@@ -76,6 +76,9 @@ def index() -> str:
 def paste(paste_id: str) -> str:
     paste_data = get_db().pastes.find_one({"id": paste_id})
 
+    if not paste_data:
+        flask.abort(400, description=f"No paste with id {paste_id} found")
+
     paste_troncated = paste_data["text"]
     if len(paste_troncated) > 256:
         paste_troncated = paste_troncated[:256]
