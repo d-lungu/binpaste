@@ -2,3 +2,5 @@ Flask
 pymongo
 python-dotenv
 gunicorn
+Flask-Caching
+redis

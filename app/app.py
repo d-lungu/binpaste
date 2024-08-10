@@ -1,13 +1,19 @@
-import os
-import datetime
 import string
-import time
 import flask
 import pymongo
-import bson
 import random
+import redis
+import flask_caching
 
 app = flask.Flask(__name__)
+app.config.from_mapping(
+    {
+        "CACHE_TYPE": "RedisCache",
+        "CACHE_REDIS_HOST": redis.Redis(host="redis", port=6379),
+        "CACHE_DEFAULT_TIMEOUT": 60 * 60 * 24 * 30  # 1 month
+    }
+)
+cache = flask_caching.Cache(app)
 PASTE_ID_LENGTH = 20
 
 
@@ -42,12 +48,14 @@ def get_config() -> dict:
     return config
 
 
-@app.route("/")
+@app.route("/", methods=["GET"])
+@cache.cached()
 def index() -> str:
     return flask.render_template("index.html")
 
 
-@app.route("/<string:paste_id>")
+@app.route("/<string:paste_id>", methods=["GET"])
+@cache.cached()
 def paste(paste_id: str) -> str:
     paste_data = get_db().pastes.find_one({"id": paste_id})
 
