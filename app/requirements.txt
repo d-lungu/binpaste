@@ -3,5 +3,4 @@ pymongo
 python-dotenv
 gunicorn
 Flask-Caching
-redis
 Flask-Limiter

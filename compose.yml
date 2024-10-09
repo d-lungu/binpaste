@@ -1,9 +1,4 @@
 services:
-  redis:
-    container_name: binpaste-redis
-    image: eqalpha/keydb
-    expose:
-      - '6379'
   web:
     container_name: binpaste
     build: './app'
